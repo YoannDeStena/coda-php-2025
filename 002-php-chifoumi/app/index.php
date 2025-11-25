@@ -9,6 +9,8 @@ $player = $_GET["player"] ?? "Choississez un attaquant";
 $phpPlayer = "En Attente";
 $choices = ["Pierre", "Feuille", "Ciseaux", "Lézard", "Spock"];
 $result = "Aucun";
+$playerColor = "";
+$phpColor = "";
 
 function getPlayerStrengths(String $player): array {
     $toReturn = null;
@@ -30,9 +32,13 @@ if($hasPlayer) {
     } elseif(in_array($phpPlayer, getPlayerStrengths($player))) {
         $result = "Gagné";
         $playerWins += 1;
+        $playerColor = "victory";
+        $phpColor = "defeat";
     } else {
         $result = "Perdu";
         $phpWins += 1;
+        $playerColor = "defeat";
+        $phpColor = "victory";
     }
     $games += 1;
 }
@@ -57,8 +63,8 @@ $html = <<<HTML
             <h2>Égalités : $ties</h2>
         </div>
         <div class="row">
-            <h2>Joueur : $player</h2>
-            <h2>PHP : $phpPlayer</h2>
+            <h2 class=$playerColor>Joueur : $player</h2>
+            <h2 class=$phpColor>PHP : $phpPlayer</h2>
             <h2>Résultat : $result</h2>
         </div>
         <div class="row">
