@@ -44,7 +44,7 @@ $html = <<<HTML
         <div class="row">
             <h2>Joueur : $player</h2>
             <h2>PHP : $phpPlayer</h2>
-            <h2>Resultat : $result</h2>
+            <h2>Résultat : $result</h2>
         </div>
         <div class="row">
             <a href="index.php?player=Pierre"><button type="submit" >Pierre</button></a>
