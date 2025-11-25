@@ -9,11 +9,12 @@ h1 {
 }
 
 h2 {
-    background-color: blue;
-    color: lawngreen;
+    background-color: black;
+    color: white;
     font-size: 40px;
     outline: blue solid;
     border-radius: 10px;
+    transition: all 0.2s;
 }
 
 .row {
@@ -37,4 +38,9 @@ button {
     color: white;
     font-size: 50px;
     border-radius: 25px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: green;
 }
