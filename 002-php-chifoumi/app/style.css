@@ -1,0 +1,33 @@
+:root {
+    background-color: cadetblue;
+}
+
+h1 {
+    background-color: aqua;
+    text-align: center;
+}
+
+h2 {
+    background-color: aqua;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+.row > a, .row > h2 {
+    display: block;
+    height: auto;
+    margin: 50px auto;
+}
+
+button {
+    width: 500px;
+    height: 100px;
+    background-color: red;
+    color: white;
+    font-size: 50px;
+}
