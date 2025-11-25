@@ -1,5 +1,6 @@
 :root {
     background-color: cadetblue;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
@@ -8,7 +9,10 @@ h1 {
 }
 
 h2 {
-    background-color: aqua;
+    background-color: azure;
+    font-size: 40px;
+    outline: blue solid;
+    border-radius: 10px;
 }
 
 .row {
@@ -22,7 +26,7 @@ h2 {
 .row > a, .row > h2 {
     display: block;
     height: auto;
-    margin: 50px auto;
+    margin: 50px auto 0;
 }
 
 button {
@@ -31,4 +35,5 @@ button {
     background-color: red;
     color: white;
     font-size: 50px;
+    border-radius: 25px;
 }
