@@ -6,14 +6,23 @@ $choices = ["Pierre", "Feuille", "Ciseaux"];
 $phpPlayer = $choices[array_rand($choices)];
 $result = "Aucun";
 
+function getPlayerStrengths(String $player): array {
+    $toReturn = null;
+    switch ($player) {
+        case "Pierre": $toReturn = ["Ciseaux"]; break;
+        case "Feuille": $toReturn = ["Pierre"]; break;
+        case "Ciseaux": $toReturn = ["Feuille"]; break;
+    }
+    return $toReturn;
+}
+
 if($hasPlayer) {
-    if ($player == $phpPlayer) {
+    if($player == $phpPlayer) {
         $result = "Égalité";
-    } elseif
-    ($player == "Pierre" && $phpPlayer == "Ciseaux" ||
-        $player == "Feuille" && $phpPlayer == "Pierre" ||
-        $player == "Ciseaux" && $phpPlayer == "Feuille") {
+    } elseif(in_array($phpPlayer, getPlayerStrengths($player))) {
         $result = "Gagné";
+    } else {
+        $result = "Perdu";
     }
 }
 
