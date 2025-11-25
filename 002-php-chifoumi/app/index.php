@@ -2,16 +2,18 @@
 
 $hasPlayer = isset($_GET['player']);
 $player = $_GET["player"] ?? "Choississez un attaquant";
-$choices = ["Pierre", "Feuille", "Ciseaux"];
+$choices = ["Pierre", "Feuille", "Ciseaux", "Lézard", "Spock"];
 $phpPlayer = $choices[array_rand($choices)];
 $result = "Aucun";
 
 function getPlayerStrengths(String $player): array {
     $toReturn = null;
     switch ($player) {
-        case "Pierre": $toReturn = ["Ciseaux"]; break;
-        case "Feuille": $toReturn = ["Pierre"]; break;
-        case "Ciseaux": $toReturn = ["Feuille"]; break;
+        case "Pierre": $toReturn = ["Ciseaux", "Lézard"]; break;
+        case "Feuille": $toReturn = ["Pierre", "Spock"]; break;
+        case "Ciseaux": $toReturn = ["Feuille", "Lézard"]; break;
+        case "Lézard": $toReturn = ["Feuille", "Spock"]; break;
+        case "Spock": $toReturn = ["Pierre", "Ciseaux"]; break;
     }
     return $toReturn;
 }
@@ -48,6 +50,8 @@ $html = <<<HTML
             <a href="index.php?player=Pierre"><button type="submit" >Pierre</button></a>
             <a href="index.php?player=Feuille"><button type="submit">Feuille</button></a>
             <a href="index.php?player=Ciseaux"><button type="submit">Ciseaux</button></a>
+            <a href="index.php?player=Lézard"><button type="submit">Lézard</button></a>
+            <a href="index.php?player=Spock"><button type="submit">Spock</button></a>
         </div>
         <div class="row">
             <a href="index.php"><button type="submit">Reset</button></a>
