@@ -9,7 +9,8 @@ h1 {
 }
 
 h2 {
-    background-color: azure;
+    background-color: blue;
+    color: lawngreen;
     font-size: 40px;
     outline: blue solid;
     border-radius: 10px;
