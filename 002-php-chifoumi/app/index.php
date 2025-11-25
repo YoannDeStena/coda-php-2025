@@ -6,8 +6,8 @@ $playerWins = $_GET["playerwins"] ?? 0;
 $phpWins = $_GET["phpwins"] ?? 0;
 $ties = $_GET["ties"] ?? 0;
 $player = $_GET["player"] ?? "Choississez un attaquant";
+$phpPlayer = "En Attente";
 $choices = ["Pierre", "Feuille", "Ciseaux", "Lézard", "Spock"];
-$phpPlayer = $choices[array_rand($choices)];
 $result = "Aucun";
 
 function getPlayerStrengths(String $player): array {
@@ -23,6 +23,7 @@ function getPlayerStrengths(String $player): array {
 }
 
 if($hasPlayer) {
+    $phpPlayer = $choices[array_rand($choices)];
     if($player == $phpPlayer) {
         $result = "Égalité";
         $ties += 1;
