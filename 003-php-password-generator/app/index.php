@@ -18,14 +18,31 @@ function selectRandomChar(string $string): string {
 function generatePassword(int $size, int $uppercase, int $lowercase, int $digits, int $symbols): string {
     $password = "";
     $eligibleChars = "";
-    if($uppercase)
-        $eligibleChars = $eligibleChars . "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if($lowercase)
-        $eligibleChars = $eligibleChars . "abcdefghijklmnopqrstuvwxyz";
-    if($digits)
-        $eligibleChars = $eligibleChars . "0123456789";
-    if($symbols)
+    //On s'assure qu'un caractère de chaque type sélectionné est présent.
+    if($uppercase) {
+        $size--;
+        $uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $eligibleChars = $eligibleChars . $uppercaseChars;
+        $password = $password . selectRandomChar($uppercaseChars);
+    }
+    if($lowercase) {
+        $size--;
+        $lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+        $eligibleChars = $eligibleChars . $lowercaseChars;
+        $password = $password . selectRandomChar($lowercaseChars);
+    }
+    if($digits) {
+        $size--;
+        $digitsChars = "0123456789";
+        $eligibleChars = $eligibleChars . $digitsChars;
+        $password = $password . selectRandomChar($digitsChars);
+    }
+    if($symbols) {
+        $size--;
+        $symbolsChars = "!@#$%^&*()";
         $eligibleChars = $eligibleChars . "!@#$%^&*()";
+        $password = $password . selectRandomChar($symbolsChars);
+    }
 
     if(strlen($eligibleChars) == 0)
         return "Erreur : Aucun caractère éligible sélectionné.";
@@ -72,7 +89,7 @@ $html = <<<HTML
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Générateur de mots de passe $digitsAllowed</h1>
+        <h1>Générateur de mots de passe</h1>
         <div>
             $password
         </div>
