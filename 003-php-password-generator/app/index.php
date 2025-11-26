@@ -94,15 +94,17 @@ $html = <<<HTML
         </h2>
         <form method="POST" action="index.php">
             <div>
+                Longueur :
                 <select class="form-select" name="size">
                     $options
                 </select>
+                caractères.
             </div>
             <div>
-                <input type="checkbox" name="uppercase" value="1" $uppercaseChecked ><label>Majuscules autorisées (A-Z)</label><br>
-                <input type="checkbox" name="lowercase" value="1" $lowercaseChecked><label>Minuscules autorisées (a-z)</label><br>
-                <input type="checkbox" name="digits" value="1" $digitsChecked><label>Chiffres autorisés (1-9)</label><br>
-                <input type="checkbox" name="symbols" value="1" $symbolsChecked><label>Symboles autorisées (!@#$%^&*())</label>
+                <input type="checkbox" name="uppercase" value="1" $uppercaseChecked id="checkupper"><label for="checkupper">Majuscules autorisées (A-Z)</label><br>
+                <input type="checkbox" name="lowercase" value="1" $lowercaseChecked id="checklower"><label for="checklower">Minuscules autorisées (a-z)</label><br>
+                <input type="checkbox" name="digits" value="1" $digitsChecked id="checkdigits"><label for="checkdigits">Chiffres autorisés (1-9)</label><br>
+                <input type="checkbox" name="symbols" value="1" $symbolsChecked id="checksymbols"><label for="checksymbols">Symboles autorisées (!@#$%^&*())</label><br>
                 <button type="submit">Générer</button>
             </form>
         </div>
