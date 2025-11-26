@@ -51,7 +51,7 @@ function generatePassword(int $size, int $uppercase, int $lowercase, int $digits
         $password = $password . selectRandomChar($eligibleChars);
     }
 
-    return $password;
+    return str_shuffle($password);
 }
 
 function generateSelectOptions(int $size = 10): string
