@@ -47,9 +47,8 @@ function generatePassword(int $size, int $uppercase, int $lowercase, int $digits
     if(strlen($eligibleChars) == 0)
         return "Erreur : Aucun caractère éligible sélectionné.";
 
-    for($i = 0; $i < $size; $i++) {
+    for($i = 0; $i < $size; $i++)
         $password = $password . selectRandomChar($eligibleChars);
-    }
 
     return str_shuffle($password);
 }
@@ -89,10 +88,10 @@ $html = <<<HTML
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Générateur de mots de passe</h1>
-        <div>
+        <h1>Générateur de mots de passe<br></h1>
+        <h2>
             $password
-        </div>
+        </h2>
         <form method="POST" action="index.php">
             <div>
                 <select class="form-select" name="size">
