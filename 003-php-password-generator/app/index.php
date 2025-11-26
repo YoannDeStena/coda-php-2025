@@ -1,13 +1,41 @@
 <?php
 
-$uppercaseAllowed = $_POST["uppercase"] ?? false;
-$lowercaseAllowed = $_POST["lowercase"] ?? false;
-$digitsAllowed = $_POST["digits"] ?? false;
-$symbolsAllowed = $_POST["symbols"] ?? false;
+$uppercaseAllowed = $_POST["uppercase"] ?? 0;
+$lowercaseAllowed = $_POST["lowercase"] ?? 0;
+$digitsAllowed = $_POST["digits"] ?? 0;
+$symbolsAllowed = $_POST["symbols"] ?? 0;
+$size = $_POST["size"] ?? 10;
 $uppercaseChecked = $uppercaseAllowed ? "checked" : "";
 $lowercaseChecked = $lowercaseAllowed ? "checked" : "";
 $digitsChecked = $digitsAllowed ? "checked" : "";
 $symbolsChecked = $symbolsAllowed ? "checked" : "";
+
+function selectRandomChar(string $string): string {
+    $index = random_int(0, strlen($string) - 1);
+    return $string[$index];
+}
+
+function generatePassword(int $size, int $uppercase, int $lowercase, int $digits, int $symbols): string {
+    $password = "";
+    $eligibleChars = "";
+    if($uppercase)
+        $eligibleChars = $eligibleChars . "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if($lowercase)
+        $eligibleChars = $eligibleChars . "abcdefghijklmnopqrstuvwxyz";
+    if($digits)
+        $eligibleChars = $eligibleChars . "0123456789";
+    if($symbols)
+        $eligibleChars = $eligibleChars . "!@#$%^&*()";
+
+    if(strlen($eligibleChars) == 0)
+        return "Erreur : Aucun caractère éligible sélectionné.";
+
+    for($i = 0; $i < $size; $i++) {
+        $password = $password . selectRandomChar($eligibleChars);
+    }
+
+    return $password;
+}
 
 function generateSelectOptions(int $size = 10): string
 {
@@ -31,7 +59,8 @@ function generateSelectOptions(int $size = 10): string
     return $html;
 }
 
-$options = generateSelectOptions();
+$options = generateSelectOptions($size);
+$password = generatePassword($size, $uppercaseAllowed, $lowercaseAllowed, $digitsAllowed, $symbolsAllowed);
 
 $html = <<<HTML
 <!doctype html>
@@ -45,15 +74,15 @@ $html = <<<HTML
     <body>
         <h1>Générateur de mots de passe $digitsAllowed</h1>
         <div>
-            Mot de passe.
+            $password
         </div>
-        <div>
-            <select class="form-select" name="size">
-                $options
-            </select>
-        </div>
-        <div>
-            <form method="POST" action="index.php">
+        <form method="POST" action="index.php">
+            <div>
+                <select class="form-select" name="size">
+                    $options
+                </select>
+            </div>
+            <div>
                 <input type="checkbox" name="uppercase" value="1" $uppercaseChecked ><label>Majuscules autorisées (A-Z)</label><br>
                 <input type="checkbox" name="lowercase" value="1" $lowercaseChecked><label>Minuscules autorisées (a-z)</label><br>
                 <input type="checkbox" name="digits" value="1" $digitsChecked><label>Chiffres autorisés (1-9)</label><br>
