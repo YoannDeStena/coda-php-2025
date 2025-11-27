@@ -11,10 +11,10 @@ $artists = (new DatabaseManager(
 $htmlArtists = "<div class='row'>";
 
 foreach ($artists as $artist) {
-    $htmlArtists =  $htmlArtists . "<div class='imageblock'>";
+    $htmlArtists =  $htmlArtists . "<a href='artist.php' class='imageblock'>";
     $htmlArtists = $htmlArtists . $artist["name"];
     $htmlArtists = $htmlArtists . "<img src=\"" . $artist["cover"] . "\">";
-    $htmlArtists =  $htmlArtists . "</div>";
+    $htmlArtists =  $htmlArtists . "</a>";
 }
 
 $htmlArtists =  $htmlArtists . "</div>";
