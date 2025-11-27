@@ -1,0 +1,46 @@
+:root {
+    background-color: #707090;
+    font-family: Arial, sans-serif;
+}
+
+img {
+    width: 100px;
+}
+
+.row {
+    display: grid;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto auto auto auto auto;
+}
+
+.imageblock {
+    height: 250px;
+    display: inline-block;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #505080;
+    text-align: center;
+    background-color: #7070ee;
+    transition: all 0.2s;
+}
+
+.imageblock:hover {
+    background-color: #505080;
+    color: white;
+}
+
+.imageblock > img {
+    display: block;
+    height: auto;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    background-color: #7070ee;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #7070ee;
+}
