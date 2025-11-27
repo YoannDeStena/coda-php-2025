@@ -14,7 +14,6 @@ foreach ($artists as $artist) {
     $htmlArtists =  $htmlArtists . "<div class='imageblock'>";
     $htmlArtists = $htmlArtists . $artist["name"];
     $htmlArtists = $htmlArtists . "<img src=\"" . $artist["cover"] . "\">";
-    $htmlArtists = $htmlArtists . "<br>" . $artist["biography"];
     $htmlArtists =  $htmlArtists . "</div>";
 }
 

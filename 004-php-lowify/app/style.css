@@ -4,7 +4,7 @@
 }
 
 img {
-    width: 100px;
+    width: 200px;
 }
 
 .row {
@@ -17,11 +17,13 @@ img {
 
 .imageblock {
     height: 250px;
+    width: 300px;
     display: inline-block;
     border-style: solid;
     border-radius: 20px;
     border-color: #505080;
     text-align: center;
+    font-size: 25px;
     background-color: #7070ee;
     transition: all 0.2s;
 }
@@ -35,6 +37,8 @@ img {
     display: block;
     height: auto;
     margin: auto;
+    border-style: hidden;
+    border-radius: 30px;
 }
 
 h1 {
