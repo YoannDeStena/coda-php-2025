@@ -27,9 +27,11 @@ $songs = $database->executeQuery("
     WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
     ORDER BY song.note DESC
     LIMIT 5");
-$albums = $database->executeQuery(
-
-);
+$albums = $database->executeQuery(" 
+    SELECT * FROM album
+    WHERE artist_id = $artist
+    ORDER BY release_date DESC
+");
 
 if(sizeof($artists) == 0) {
     echo (new HTMLPage("Lowify - Error 404"))
@@ -54,6 +56,16 @@ foreach($songs as $song) {
     $songText = $songText . "</div>";
 }
 
+$albumText = "";
+
+foreach($albums as $album) {
+    $albumText = $albumText . "<div class='block'>";
+    $albumText = $albumText . "<h2>" . $album["name"] . "</h2>";
+    $albumText = $albumText . "<p>Date de Sortie : " . $album["release_date"] . "</p>";
+    $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
+    $albumText = $albumText . "</div>";
+}
+
 $html = <<<HTML
     <h1>$artistName</h1>
     <div>
@@ -63,11 +75,13 @@ $html = <<<HTML
         <h2>Biographie</h2>
         <p>$artistBiography</p>
     </div>
+    <h3>Chansons</h3>
     <div class="songs">
         $songText
     </div>
+    <h3>Albums</h3>
     <div class="songs">
-        $songText
+        $albumText
     </div>
 HTML;
 

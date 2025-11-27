@@ -55,12 +55,17 @@ img {
     margin: auto;
 }
 
-h1 {
+h1, h3 {
     text-align: center;
     background-color: #7070ee;
     border-style: solid;
     border-radius: 20px;
     border-color: #7070ee;
+}
+
+h3 {
+    border-color: #505080;
+    font-size: 35px;
 }
 
 .cover {
