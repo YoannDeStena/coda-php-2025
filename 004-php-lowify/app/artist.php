@@ -6,39 +6,37 @@ require_once 'inc/database.inc.php';
 $artist = $_GET["artist"] ?? "error404";
 
 try {
-
     $database = (new DatabaseManager(
         "mysql:host=mysql;dbname=lowify;charset=utf8mb4",
         "lowify",
         "lowifypassword"));
 } catch (PDOException $e) {
     $message = $e->getMessage();
-    echo (new HTMLPage("Lowify - Error"))
-        ->addStylesheet("style.css")
-        ->addContent("<h1>$message</h1>")
-        ->render();
-    return;
+    header("Location: error.php?message=$message");
+    exit();
+}
+try {
+    $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
+    $songs = $database->executeQuery("
+        SELECT song.name, song.id, song.note, song.duration, album.cover FROM song     
+        INNER JOIN artist, album
+        WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
+        ORDER BY song.note DESC
+        LIMIT 5");
+    $albums = $database->executeQuery(" 
+        SELECT * FROM album
+        WHERE artist_id = $artist
+        ORDER BY release_date DESC
+    ");
+} catch(PDOException $e) {
+    $message = $e->getMessage();
+    header("Location: error.php?message=$message");
+    exit();
 }
 
-$artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
-$songs = $database->executeQuery("
-    SELECT song.name, song.id, song.note, song.duration, album.cover FROM song     
-    INNER JOIN artist, album
-    WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
-    ORDER BY song.note DESC
-    LIMIT 5");
-$albums = $database->executeQuery(" 
-    SELECT * FROM album
-    WHERE artist_id = $artist
-    ORDER BY release_date DESC
-");
-
 if(sizeof($artists) == 0) {
-    echo (new HTMLPage("Lowify - Error 404"))
-        ->addStylesheet("style.css")
-        ->addContent("<h1>Artiste introuvable.</h1>")
-        ->render();
-    return;
+    header("Location: error.php?message=Artiste Introuvable");
+    exit();
 }
 
 $artist = $artists[0];

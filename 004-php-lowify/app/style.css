@@ -29,7 +29,7 @@ img {
     background-color: #7070ee;
 }
 
-.imageblock, .imageblock:visited, imageblock:link {
+.imageblock, .imageblock:visited, .imageblock:link {
     height: 250px;
     width: 300px;
     display: inline-block;
@@ -74,4 +74,14 @@ h3 {
     justify-content: center;
     align-items: center;
     margin: 15px auto;
+}
+
+a > h2 {
+    transition: all 0.2s;
+    font-size: 50px;
+}
+
+a > h2:hover {
+    background-color: #505080;
+    color: white;
 }
