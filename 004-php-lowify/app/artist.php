@@ -11,7 +11,7 @@ try {
         "mysql:host=mysql;dbname=lowify;charset=utf8mb4",
         "lowify",
         "lowifypassword"));
-} catch (Exception $e) {
+} catch (PDOException $e) {
     $message = $e->getMessage();
     echo (new HTMLPage("Lowify - Error"))
         ->addStylesheet("style.css")
@@ -21,6 +21,15 @@ try {
 }
 
 $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
+$songs = $database->executeQuery("
+    SELECT song.name, song.id, song.note, album.cover FROM song     
+    INNER JOIN artist, album
+    WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
+    ORDER BY song.note DESC
+    LIMIT 5");
+$albums = $database->executeQuery(
+
+);
 
 if(sizeof($artists) == 0) {
     echo (new HTMLPage("Lowify - Error 404"))
@@ -32,9 +41,34 @@ if(sizeof($artists) == 0) {
 
 $artist = $artists[0];
 $artistName = $artist["name"];
+$artistCover = $artist["cover"];
+$artistBiography = $artist["biography"];
+
+$songText = "";
+
+foreach($songs as $song) {
+    $songText = $songText . "<div class='block'>";
+    $songText = $songText . "<h2>" . $song["name"] . "</h2>";
+    $songText = $songText . "<p>Note : " . $song["note"] . "</p>";
+    $songText = $songText . "<img src=\"" . $song["cover"] . "\"/>";
+    $songText = $songText . "</div>";
+}
 
 $html = <<<HTML
     <h1>$artistName</h1>
+    <div>
+        <img src="$artistCover" alt="Cover de $artistName" class="cover">
+    </div>
+    <div class="block">
+        <h2>Biographie</h2>
+        <p>$artistBiography</p>
+    </div>
+    <div class="songs">
+        $songText
+    </div>
+    <div class="songs">
+        $songText
+    </div>
 HTML;
 
 

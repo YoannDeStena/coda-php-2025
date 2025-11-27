@@ -5,14 +5,28 @@
 
 img {
     width: 200px;
+    border-style: hidden;
+    border-radius: 30px;
 }
 
 .row {
     display: grid;
-    flex-direction: row;
+    grid-template-columns: auto auto auto auto;
     justify-content: center;
     align-items: center;
-    grid-template-columns: auto auto auto auto;
+}
+
+.songs {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.block {
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #505080;
+    text-align: center;
+    background-color: #7070ee;
 }
 
 .imageblock, .imageblock:visited, imageblock:link {
@@ -39,8 +53,6 @@ img {
     display: block;
     height: auto;
     margin: auto;
-    border-style: hidden;
-    border-radius: 30px;
 }
 
 h1 {
@@ -49,4 +61,12 @@ h1 {
     border-style: solid;
     border-radius: 20px;
     border-color: #7070ee;
+}
+
+.cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto 15px;
 }
