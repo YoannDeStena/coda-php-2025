@@ -11,7 +11,7 @@ $artists = (new DatabaseManager(
 $htmlArtists = "<div class='row'>";
 
 foreach ($artists as $artist) {
-    $htmlArtists =  $htmlArtists . "<a href='artist.php' class='imageblock'>";
+    $htmlArtists =  $htmlArtists . "<a href='artist.php?artist=". $artist["id"] ."' class='imageblock'>";
     $htmlArtists = $htmlArtists . $artist["name"];
     $htmlArtists = $htmlArtists . "<img src=\"" . $artist["cover"] . "\">";
     $htmlArtists =  $htmlArtists . "</a>";
@@ -24,4 +24,7 @@ $html = <<<HTML
     $htmlArtists
 HTML;
 
-echo (new HTMLPage("Lowify - Artistes"))->addContent($html)->addStylesheet("style.css")->render();
+echo (new HTMLPage("Lowify - Artistes"))
+    ->addContent($html)
+    ->addStylesheet("style.css")
+    ->render();

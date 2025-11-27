@@ -12,7 +12,7 @@ img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 
 .imageblock, .imageblock:visited, imageblock:link {
