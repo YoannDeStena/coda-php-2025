@@ -22,7 +22,7 @@ try {
 
 $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
 $songs = $database->executeQuery("
-    SELECT song.name, song.id, song.note, album.cover FROM song     
+    SELECT song.name, song.id, song.note, song.duration, album.cover FROM song     
     INNER JOIN artist, album
     WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
     ORDER BY song.note DESC
@@ -49,9 +49,12 @@ $artistBiography = $artist["biography"];
 $songText = "";
 
 foreach($songs as $song) {
+    $duration = calculateSongDuration($song["duration"]);
+    $minutes = $duration[0];
+    $seconds = $duration[1];
     $songText = $songText . "<div class='block'>";
     $songText = $songText . "<h2>" . $song["name"] . "</h2>";
-    $songText = $songText . "<p>Note : " . $song["note"] . "</p>";
+    $songText = $songText . "<p>Note : " . $song["note"] . " | Durée : " . $minutes . ":" . $seconds . "</p>";
     $songText = $songText . "<img src=\"" . $song["cover"] . "\"/>";
     $songText = $songText . "</div>";
 }
@@ -64,6 +67,12 @@ foreach($albums as $album) {
     $albumText = $albumText . "<p>Date de Sortie : " . $album["release_date"] . "</p>";
     $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
     $albumText = $albumText . "</div>";
+}
+
+function calculateSongDuration(int $duration): array {
+    $minutes = intdiv($duration, 60);
+    $seconds = $duration % 60;
+    return [$minutes, $seconds];
 }
 
 $html = <<<HTML
