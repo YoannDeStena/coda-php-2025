@@ -73,5 +73,5 @@ h3 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: auto auto 15px;
+    margin: 15px auto;
 }

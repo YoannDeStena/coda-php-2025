@@ -75,8 +75,27 @@ function calculateSongDuration(int $duration): array {
     return [$minutes, $seconds];
 }
 
+function calculateViewers(int $viewers): string {
+    $formattedViews = "$viewers";
+    if($viewers >= 1000000) {
+        $float = $viewers / 1000000;
+        $formattedViews = number_format($float, 1) . " M";
+    }
+    else if($viewers >= 1000) {
+        $float = $viewers / 1000;
+        $formattedViews = number_format($float, 2) . " K";
+    }
+    return $formattedViews;
+}
+
+$viewers = calculateViewers($artist["monthly_listeners"]);
+
 $html = <<<HTML
     <h1>$artistName</h1>
+    <div class="block">
+        <h2>Auditeurs Mensuels</h2>
+        <p>$viewers</p>
+    </div>
     <div>
         <img src="$artistCover" alt="Cover de $artistName" class="cover">
     </div>
