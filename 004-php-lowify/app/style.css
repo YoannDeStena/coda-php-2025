@@ -78,10 +78,13 @@ h3 {
 
 a > h2 {
     transition: all 0.2s;
-    font-size: 50px;
 }
 
 a > h2:hover {
     background-color: #505080;
     color: white;
+}
+
+a, a:visited, a:link {
+    color: #BCB88A;
 }
