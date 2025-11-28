@@ -11,10 +11,10 @@ try {
         "lowify",
         "lowifypassword"));
 } catch (PDOException $e) {
-    $message = $e->getMessage();
-    header("Location: error.php?message=$message");
+    header("Location: error.php?message=Impossible de se connecter à la base de données.");
     exit();
 }
+
 try {
     $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
     $songs = $database->executeQuery("
@@ -29,8 +29,7 @@ try {
         ORDER BY release_date DESC
     ");
 } catch(PDOException $e) {
-    $message = $e->getMessage();
-    header("Location: error.php?message=$message");
+    header("Location: error.php?message=Paramètre \"artist\" manquant.");
     exit();
 }
 
