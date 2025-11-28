@@ -100,7 +100,7 @@ $html = <<<HTML
         <h2>Biographie</h2>
         <p>$artistBiography</p>
     </div>
-    <h3>Chansons</h3>
+    <h3>Top Titres</h3>
     <div class="songs">
         $songText
     </div>
