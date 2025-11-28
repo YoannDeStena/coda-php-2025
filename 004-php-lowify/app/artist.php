@@ -58,9 +58,10 @@ $albumText = "";
 //On attache toutes les informations nécessaires dans un seul string
 foreach($albums as $album) {
     $albumId = $album["id"];
+    $date = $utils->formatDate($album["release_date"]);
     $albumText = $albumText . "<a href='album.php?album=$albumId'><div class='block'>";
     $albumText = $albumText . "<h2>" . $album["name"] . "</h2>";
-    $albumText = $albumText . "<p>Date de Sortie : " . $album["release_date"] . "</p>";
+    $albumText = $albumText . "<p>Date de Sortie : " . $date . "</p>";
     $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
     $albumText = $albumText . "</div></a>";
 }

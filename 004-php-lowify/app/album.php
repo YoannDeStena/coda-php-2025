@@ -33,7 +33,7 @@ $albumName = $album["name"];
 $albumCover = $album["cover"];
 $artistName = $album["artistname"];
 $artistId = $album["artist_id"];
-$albumRelease = $album["release_date"];
+$albumRelease = $utils->formatDate($album["release_date"]);
 
 $songs = "";
 

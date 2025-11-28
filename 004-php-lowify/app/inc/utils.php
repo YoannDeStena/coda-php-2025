@@ -30,4 +30,20 @@ class Utils
         $seconds = $seconds % 60;
         return [$minutes, $seconds];
     }
+
+    /**
+     * @param string $date La date à formatter.
+     * @return string La résultat du formattage (DD/MM/YYYY)
+     */
+    public function formatDate(string $date): string
+    {
+        // you can change this format using https://www.php.net/manual/en/datetime.format.php
+        $format = "d/m/Y";
+        try {
+            $dateTimeObject = new DateTime($date);
+        } catch (DateMalformedStringException $e) {
+            return "[Format date incorrecte]";
+        }
+        return $dateTimeObject->format($format);
+    }
 }
