@@ -83,6 +83,10 @@ foreach($foundSongs as $song) {
 
 $html = <<<HTML
     <h1>Lowify</h1>
+    <form>
+        <input type="text" name="query">
+        <button type="submit">Rechercher</button>
+    </form>
     $errorMessage
     <div class="songs">
         $searchResult

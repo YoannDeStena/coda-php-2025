@@ -71,7 +71,7 @@ foreach($topAlbums as $topAlbum) {
 //On génère la page HTML
 $html = <<<HTML
     <h1>Lowify</h1>
-    <form>
+    <form action="search.php">
         <input type="text" name="query">
         <button type="submit">Rechercher</button>
     </form>
