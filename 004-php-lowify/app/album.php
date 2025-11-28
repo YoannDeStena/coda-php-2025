@@ -35,9 +35,8 @@ $artistName = $album["artistname"];
 $artistId = $album["artist_id"];
 $albumRelease = $utils->formatDate($album["release_date"]);
 
-$songs = "";
-
 //On attache toutes les informations nécessaires dans un seul string
+$songs = "";
 foreach ($albums as $album) {
     $duration = $utils->secondsToMin($album["duration"]);
     $songs = $songs . "<div>";

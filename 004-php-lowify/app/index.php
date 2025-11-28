@@ -32,7 +32,7 @@ try {
     exit();
 }
 
-//On attache toutes les informations nécessaires dans plusieurs strings
+//On attache toutes les informations nécessaires dans un seul string
 $formattedArtists = "";
 foreach($topArtists as $artist) {
     $artistId = $artist["id"];
@@ -42,8 +42,8 @@ foreach($topArtists as $artist) {
     $formattedArtists = $formattedArtists . "</div></a>";
 }
 
-$formattedRecentAlbums = "";
 //On attache toutes les informations nécessaires dans un seul string
+$formattedRecentAlbums = "";
 foreach($recentAlbums as $recentAlbum) {
     $albumId = $recentAlbum["id"];
     $date = $utils->formatDate($recentAlbum["release_date"]);
@@ -54,8 +54,8 @@ foreach($recentAlbums as $recentAlbum) {
     $formattedRecentAlbums = $formattedRecentAlbums . "</div></a>";
 }
 
-$formattedTopAlbums = "";
 //On attache toutes les informations nécessaires dans un seul string
+$formattedTopAlbums = "";
 foreach($topAlbums as $topAlbum) {
     $albumId = $topAlbum["album_id"];
     $averageRating = number_format($topAlbum["note"],2, ",");

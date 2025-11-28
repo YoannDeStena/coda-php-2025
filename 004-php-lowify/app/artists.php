@@ -16,9 +16,8 @@ catch(PDOException $e) {
     exit();
 }
 
-$htmlArtists = "<div class='row'>";
-
 //On attache toutes les informations nécessaires dans un seul string
+$htmlArtists = "";
 foreach ($artists as $artist) {
     $htmlArtists =  $htmlArtists . "<a href='artist.php?artist=". $artist["id"] ."' class='imageblock'>";
     $htmlArtists = $htmlArtists . $artist["name"];
@@ -26,12 +25,12 @@ foreach ($artists as $artist) {
     $htmlArtists =  $htmlArtists . "</a>";
 }
 
-$htmlArtists =  $htmlArtists . "</div>";
-
 //On génère la page HTML
 $html = <<<HTML
     <h1>Artistes<br></h1>
-    $htmlArtists
+    <div class="row">
+        $htmlArtists
+    </div>
 HTML;
 
 //On envoie la page au client
