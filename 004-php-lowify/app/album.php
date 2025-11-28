@@ -62,7 +62,7 @@ $html = <<<HTML
 HTML;
 
 //On envoie la page au client
-echo (new HTMLPage("Lowify - " . "Album Test"))
+echo (new HTMLPage("Lowify - " . $albumName))
     ->addStylesheet("style.css")
     ->addContent($html)
     ->render();
