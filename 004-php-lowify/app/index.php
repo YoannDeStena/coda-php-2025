@@ -71,6 +71,10 @@ foreach($topAlbums as $topAlbum) {
 //On génère la page HTML
 $html = <<<HTML
     <h1>Lowify</h1>
+    <form>
+        <input type="text" name="query">
+        <button type="submit">Rechercher</button>
+    </form>
     <h3>Top Artistes</h3>
     <div class="songs">
         $formattedArtists

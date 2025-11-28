@@ -39,29 +39,27 @@ $artistName = $artist["name"];
 $artistCover = $artist["cover"];
 $artistBiography = $artist["biography"];
 
-$songText = "";
-
 //On attache toutes les informations nécessaires dans un seul string
+$songText = "";
 foreach($songs as $song) {
     $duration = $utils->secondsToMin($song["duration"]);
     $minutes = $duration[0];
     $seconds = $duration[1];
     $songText = $songText . "<div class='block'>";
     $songText = $songText . "<h2>" . $song["name"] . "</h2>";
-    $songText = $songText . "<p>Note : " . $song["note"] . " | Durée : " . $minutes . ":" . $seconds . "</p>";
+    $songText = $songText . "<p>Note : " . $song["note"] . " | Durée : $minutes:$seconds</p>";
     $songText = $songText . "<img src=\"" . $song["cover"] . "\"/>";
     $songText = $songText . "</div>";
 }
 
-$albumText = "";
-
 //On attache toutes les informations nécessaires dans un seul string
+$albumText = "";
 foreach($albums as $album) {
     $albumId = $album["id"];
     $date = $utils->formatDate($album["release_date"]);
     $albumText = $albumText . "<a href='album.php?album=$albumId'><div class='block'>";
     $albumText = $albumText . "<h2>" . $album["name"] . "</h2>";
-    $albumText = $albumText . "<p>Date de Sortie : " . $date . "</p>";
+    $albumText = $albumText . "<p>Date de Sortie : $date</p>";
     $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
     $albumText = $albumText . "</div></a>";
 }
