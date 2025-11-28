@@ -36,8 +36,10 @@ try {
 $formattedArtists = "";
 foreach($topArtists as $artist) {
     $artistId = $artist["id"];
+    $viewers = $utils->formatViewers($artist["monthly_listeners"]);
     $formattedArtists = $formattedArtists . "<a href='artist.php?artist=$artistId'><div class='block'>";
     $formattedArtists = $formattedArtists . "<h2>" . $artist["name"] . "</h2>";
+    $formattedArtists = $formattedArtists . "<p>Auditeurs Mensuels : " . $viewers . "</p>";
     $formattedArtists = $formattedArtists . "<img src=\"" . $artist["cover"] . "\">";
     $formattedArtists = $formattedArtists . "</div></a>";
 }
