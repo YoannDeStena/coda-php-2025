@@ -2,16 +2,10 @@
 
 require_once 'inc/page.inc.php';
 require_once 'inc/database.inc.php';
+require_once 'inc/utils.php';
 
-try {
-    $artists = (new DatabaseManager(
-        "mysql:host=mysql;dbname=lowify;charset=utf8mb4",
-        "lowify",
-        "lowifypassword"))->executeQuery("SELECT * FROM artist");;
-} catch (PDOException $e) {
-    header("Location: error.php?message=Impossible de se connecter à la base de données, ou aucun artiste n'a été trouvé.");
-    exit();
-}
+$utils = (new Utils());
+$database = $utils->connectDatabase();
 
 $htmlArtists = "<div class='row'>";
 

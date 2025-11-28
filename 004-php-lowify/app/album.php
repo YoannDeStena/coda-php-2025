@@ -2,19 +2,12 @@
 
 require_once 'inc/page.inc.php';
 require_once 'inc/database.inc.php';
+require_once "inc/utils.php";
 
 $album = $_GET["album"] ?? "error404";
 
-try {
-    $database = (new DatabaseManager(
-        "mysql:host=mysql;dbname=lowify;charset=utf8mb4",
-        "lowify",
-        "lowifypassword"));
-} catch (PDOException $e) {
-    $message = $e->getMessage();
-    header("Location: error.php?message=Impossible de se connecter à la base de données.");
-    exit();
-}
+$utils = (new Utils());
+$database = $utils->connectDatabase();
 
 try {
     $albums = $database->executeQuery("
@@ -33,12 +26,6 @@ if(sizeof($albums) == 0) {
     exit();
 }
 
-function calculateSongDuration(int $duration): array {
-    $minutes = intdiv($duration, 60);
-    $seconds = $duration % 60;
-    return [$minutes, $seconds];
-}
-
 $album = $albums[0];
 $albumName = $album["name"];
 $albumCover = $album["cover"];
@@ -49,7 +36,7 @@ $albumRelease = $album["release_date"];
 $songs = "";
 
 foreach ($albums as $album) {
-    $duration = calculateSongDuration($album["duration"]);
+    $duration = $utils->secondsToMin($album["duration"]);
     $songs = $songs . "<div>";
     $songs = $songs . $album["songname"] . " : " . $album["note"] . " (" . $duration[0] . ":" . $duration[1] . ")";
     $songs = $songs . "</div>";

@@ -2,18 +2,12 @@
 
 require_once 'inc/page.inc.php';
 require_once 'inc/database.inc.php';
+require_once 'inc/utils.php';
 
 $artist = $_GET["artist"] ?? "error404";
 
-try {
-    $database = (new DatabaseManager(
-        "mysql:host=mysql;dbname=lowify;charset=utf8mb4",
-        "lowify",
-        "lowifypassword"));
-} catch (PDOException $e) {
-    header("Location: error.php?message=Impossible de se connecter à la base de données.");
-    exit();
-}
+$utils = (new Utils());
+$database = $utils->connectDatabase();
 
 try {
     $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
@@ -46,7 +40,7 @@ $artistBiography = $artist["biography"];
 $songText = "";
 
 foreach($songs as $song) {
-    $duration = calculateSongDuration($song["duration"]);
+    $duration = $utils->secondsToMin($song["duration"]);
     $minutes = $duration[0];
     $seconds = $duration[1];
     $songText = $songText . "<div class='block'>";
@@ -64,12 +58,6 @@ foreach($albums as $album) {
     $albumText = $albumText . "<p>Date de Sortie : " . $album["release_date"] . "</p>";
     $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
     $albumText = $albumText . "</div>";
-}
-
-function calculateSongDuration(int $duration): array {
-    $minutes = intdiv($duration, 60);
-    $seconds = $duration % 60;
-    return [$minutes, $seconds];
 }
 
 function calculateViewers(int $viewers): string {
