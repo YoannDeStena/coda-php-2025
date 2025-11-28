@@ -19,16 +19,17 @@ catch(PDOException $e) {
 //On attache toutes les informations nécessaires dans un seul string
 $htmlArtists = "";
 foreach ($artists as $artist) {
-    $htmlArtists =  $htmlArtists . "<a href='artist.php?artist=". $artist["id"] ."' class='imageblock'>";
-    $htmlArtists = $htmlArtists . $artist["name"];
+    $artistId = $artist["id"];
+    $htmlArtists = $htmlArtists . "<a href='artist.php?artist=$artistId'><div class='block'>";
+    $htmlArtists = $htmlArtists . "<h2>" . $artist["name"] . "</h2>";
     $htmlArtists = $htmlArtists . "<img src=\"" . $artist["cover"] . "\">";
-    $htmlArtists =  $htmlArtists . "</a>";
+    $htmlArtists =  $htmlArtists . "</div></a>";
 }
 
 //On génère la page HTML
 $html = <<<HTML
     <a href="index.php"><h1>Artistes</h1></a>
-    <div class="row">
+    <div class="artists">
         $htmlArtists
     </div>
 HTML;

@@ -21,7 +21,12 @@ img {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.block, .imageblock {
+.artists {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.block {
     border-style: solid;
     border-radius: 20px;
     border-color: #505080;
@@ -30,24 +35,9 @@ img {
     transition: all 0.2s;
 }
 
-.imageblock, .imageblock:visited, .imageblock:link {
-    height: 250px;
-    width: 300px;
-    display: inline-block;
-    color: black;
-    font-size: 25px;
-    text-decoration: none;
-}
-
-.imageblock:hover, a > .block:hover {
+a > .block:hover {
     background-color: #505080;
     color: white;
-}
-
-.imageblock > img {
-    display: block;
-    height: auto;
-    margin: auto;
 }
 
 h1, h3 {
