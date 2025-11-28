@@ -75,7 +75,7 @@ $html = <<<HTML
         <input type="text" name="query" placeholder="ex: Super Musique...">
         <button type="submit">Rechercher</button>
     </form>
-    <h3>Top Artistes</h3>
+    <a href="artists.php"><h3>Top Artistes</h3></a>
     <div class="songs">
         $formattedArtists
     </div>
