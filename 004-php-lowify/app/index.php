@@ -72,7 +72,7 @@ foreach($topAlbums as $topAlbum) {
 $html = <<<HTML
     <h1>Lowify</h1>
     <form action="search.php">
-        <input type="text" name="query">
+        <input type="text" name="query" placeholder="ex: Super Musique...">
         <button type="submit">Rechercher</button>
     </form>
     <h3>Top Artistes</h3>
