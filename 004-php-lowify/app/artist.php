@@ -13,7 +13,7 @@ $database = $utils->connectDatabase();
 try {
     $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
     $songs = $database->executeQuery("
-        SELECT song.name, song.id, song.note, song.duration, album.cover FROM song     
+        SELECT song.name, song.id, song.note, song.duration, album.cover, album.id FROM song     
         INNER JOIN artist, album
         WHERE song.artist_id = artist.id AND song.artist_id = $artist AND song.album_id = album.id
         ORDER BY song.note DESC
@@ -57,11 +57,12 @@ $albumText = "";
 
 //On attache toutes les informations nécessaires dans un seul string
 foreach($albums as $album) {
-    $albumText = $albumText . "<div class='block'>";
+    $albumId = $album["id"];
+    $albumText = $albumText . "<a href='album.php?album=$albumId'><div class='block'>";
     $albumText = $albumText . "<h2>" . $album["name"] . "</h2>";
     $albumText = $albumText . "<p>Date de Sortie : " . $album["release_date"] . "</p>";
     $albumText = $albumText . "<img src=\"" . $album["cover"] . "\"/>";
-    $albumText = $albumText . "</div>";
+    $albumText = $albumText . "</div></a>";
 }
 
 /**
