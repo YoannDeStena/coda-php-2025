@@ -7,6 +7,14 @@ require_once 'inc/utils.php';
 $utils = (new Utils());
 $database = $utils->connectDatabase();
 
+try {
+    $artists = $database->executeQuery("SELECT * FROM artist");
+}
+catch(PDOException $e) {
+    header("Location: error.php?message=Impossible de trouver les artistes dans la base de données.");
+    exit();
+}
+
 $htmlArtists = "<div class='row'>";
 
 foreach ($artists as $artist) {
