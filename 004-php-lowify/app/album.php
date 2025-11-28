@@ -46,7 +46,7 @@ foreach ($albums as $album) {
 
 //On génère la page HTML
 $html = <<<HTML
-    <h1>$albumName</h1>
+    <a href="index.php"><h1>$albumName</h1></a>
      <div class="block">
         <a href="artist.php?artist=$artistId"><h2>$artistName</h2></a>
         <h2>Date de Sortie : $albumRelease</h2>

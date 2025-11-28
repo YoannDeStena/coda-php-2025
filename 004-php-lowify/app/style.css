@@ -71,11 +71,11 @@ h3 {
     margin: 15px auto;
 }
 
-a > h2, a > h3 {
+a > h2, a > h3, a > h1 {
     transition: all 0.2s;
 }
 
-a > h2:hover, a > h3:hover {
+a > h2:hover, a > h3:hover, a > h1:hover {
     background-color: #505080;
     color: white;
 }

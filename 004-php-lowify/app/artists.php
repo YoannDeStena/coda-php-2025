@@ -27,7 +27,7 @@ foreach ($artists as $artist) {
 
 //On génère la page HTML
 $html = <<<HTML
-    <h1>Artistes<br></h1>
+    <a href="index.php"><h1>Artistes</h1></a>
     <div class="row">
         $htmlArtists
     </div>

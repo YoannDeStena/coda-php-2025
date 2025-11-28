@@ -82,7 +82,7 @@ foreach($foundSongs as $song) {
 }
 
 $html = <<<HTML
-    <h1>Lowify</h1>
+    <a href="index.php"><h1>Lowify</h1></a>
     <form>
         <input type="text" name="query" placeholder="ex: Super Musique...">
         <button type="submit">Rechercher</button>

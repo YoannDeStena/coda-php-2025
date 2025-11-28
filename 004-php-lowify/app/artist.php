@@ -68,7 +68,7 @@ $viewers = $utils->formatViewers($artist["monthly_listeners"]);
 
 //On génère la page HTML
 $html = <<<HTML
-    <h1>$artistName</h1>
+    <a href="index.php"><h1>$artistName</h1></a>
     <div class="block">
         <h2>Auditeurs Mensuels</h2>
         <p>$viewers</p>
