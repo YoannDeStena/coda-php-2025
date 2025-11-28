@@ -66,25 +66,7 @@ foreach($albums as $album) {
     $albumText = $albumText . "</div></a>";
 }
 
-/**
- * Permet de transformer un nombre en format plus lisible (1M, 1K...)
- * @param int $viewers Le nombre à formatter.
- * @return string Le résultat du formattage.
- */
-function calculateViewers(int $viewers): string {
-    $formattedViews = "$viewers";
-    if($viewers >= 1000000) {
-        $float = $viewers / 1000000;
-        $formattedViews = number_format($float, 1) . " M";
-    }
-    else if($viewers >= 1000) {
-        $float = $viewers / 1000;
-        $formattedViews = number_format($float, 2) . " K";
-    }
-    return $formattedViews;
-}
-
-$viewers = calculateViewers($artist["monthly_listeners"]);
+$viewers = $utils->formatViewers($artist["monthly_listeners"]);
 
 //On génère la page HTML
 $html = <<<HTML
