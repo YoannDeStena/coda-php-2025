@@ -7,6 +7,7 @@ require_once 'inc/utils.php';
 $utils = (new Utils());
 $database = $utils->connectDatabase();
 
+//On essaie de récupérer toutes les informations nécessaires, on renvoie une erreur sinon.
 try {
     $topArtists = $database->executeQuery("
         SELECT * FROM artist
@@ -31,12 +32,14 @@ try {
     exit();
 }
 
+//On attache toutes les informations nécessaires dans plusieurs strings
 $formattedArtists = "";
 foreach($topArtists as $artist) {
-    $formattedArtists = $formattedArtists . "<div class='block'>";
+    $artistId = $artist["id"];
+    $formattedArtists = $formattedArtists . "<a href='artist.php?artist=$artistId'><div class='block'>";
     $formattedArtists = $formattedArtists . "<h2>" . $artist["name"] . "</h2>";
     $formattedArtists = $formattedArtists . "<img src=\"" . $artist["cover"] . "\">";
-    $formattedArtists = $formattedArtists . "</div>";
+    $formattedArtists = $formattedArtists . "</div></a>";
 }
 
 $formattedRecentAlbums = "";
@@ -63,6 +66,7 @@ foreach($topAlbums as $topAlbum) {
     $formattedTopAlbums = $formattedTopAlbums . "</div></a>";
 }
 
+//On génère la page HTML
 $html = <<<HTML
     <h1>Lowify</h1>
     <h3>Top Artistes</h3>
@@ -79,6 +83,7 @@ $html = <<<HTML
     </div>
 HTML;
 
+//On envoie la page au client
 echo (new HTMLPage("Lowify - Accueil"))
     ->addStylesheet("style.css")
     ->addContent($html)
