@@ -9,6 +9,7 @@ $artist = $_GET["artist"] ?? "error404";
 $utils = (new Utils());
 $database = $utils->connectDatabase();
 
+//On essaie de récupérer toutes les informations nécessaires, on renvoie une erreur sinon.
 try {
     $artists = $database->executeQuery("SELECT * FROM artist WHERE id = $artist");
     $songs = $database->executeQuery("
@@ -27,6 +28,7 @@ try {
     exit();
 }
 
+//On vérifie si l'artiste existe vraiment ou si l'ID est invalide.
 if(sizeof($artists) == 0) {
     header("Location: error.php?message=Artiste Introuvable");
     exit();
@@ -39,6 +41,7 @@ $artistBiography = $artist["biography"];
 
 $songText = "";
 
+//On attache toutes les informations nécessaires dans un seul string
 foreach($songs as $song) {
     $duration = $utils->secondsToMin($song["duration"]);
     $minutes = $duration[0];
@@ -52,6 +55,7 @@ foreach($songs as $song) {
 
 $albumText = "";
 
+//On attache toutes les informations nécessaires dans un seul string
 foreach($albums as $album) {
     $albumText = $albumText . "<div class='block'>";
     $albumText = $albumText . "<h2>" . $album["name"] . "</h2>";
@@ -60,6 +64,11 @@ foreach($albums as $album) {
     $albumText = $albumText . "</div>";
 }
 
+/**
+ * Permet de transformer un nombre en format plus lisible (1M, 1K...)
+ * @param int $viewers Le nombre à formatter.
+ * @return string Le résultat du formattage.
+ */
 function calculateViewers(int $viewers): string {
     $formattedViews = "$viewers";
     if($viewers >= 1000000) {
@@ -75,6 +84,7 @@ function calculateViewers(int $viewers): string {
 
 $viewers = calculateViewers($artist["monthly_listeners"]);
 
+//On génère la page HTML
 $html = <<<HTML
     <h1>$artistName</h1>
     <div class="block">
@@ -98,7 +108,7 @@ $html = <<<HTML
     </div>
 HTML;
 
-
+//On envoie la page au client
 echo (new HTMLPage("Lowify - " . $artistName))
     ->addStylesheet("style.css")
     ->addContent($html)

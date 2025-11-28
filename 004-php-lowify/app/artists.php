@@ -7,6 +7,7 @@ require_once 'inc/utils.php';
 $utils = (new Utils());
 $database = $utils->connectDatabase();
 
+//On tente de récupérer tous les artistes, sinon on renvoie sur la page d'erreur.
 try {
     $artists = $database->executeQuery("SELECT * FROM artist");
 }
@@ -17,6 +18,7 @@ catch(PDOException $e) {
 
 $htmlArtists = "<div class='row'>";
 
+//On attache toutes les informations nécessaires dans un seul string
 foreach ($artists as $artist) {
     $htmlArtists =  $htmlArtists . "<a href='artist.php?artist=". $artist["id"] ."' class='imageblock'>";
     $htmlArtists = $htmlArtists . $artist["name"];
@@ -26,11 +28,13 @@ foreach ($artists as $artist) {
 
 $htmlArtists =  $htmlArtists . "</div>";
 
+//On génère la page HTML
 $html = <<<HTML
     <h1>Artistes<br></h1>
     $htmlArtists
 HTML;
 
+//On envoie la page au client
 echo (new HTMLPage("Lowify - Artistes"))
     ->addContent($html)
     ->addStylesheet("style.css")
