@@ -14,7 +14,7 @@ try {
     $albums = $database->executeQuery("
     SELECT album.name, album.id, album.cover, album.artist_id, album.release_date, artist.name artistname, song.name songname, song.duration, song.note FROM album
     INNER JOIN artist, song
-    WHERE album.id = 2 AND album.artist_id = artist.id AND song.album_id = album.id
+    WHERE album.id = $album AND album.artist_id = artist.id AND song.album_id = album.id
     ORDER BY song.id DESC
     ");
 } catch(PDOException $e) {
