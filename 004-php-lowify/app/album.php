@@ -38,9 +38,9 @@ $albumRelease = $utils->formatDate($album["release_date"]);
 //On attache toutes les informations nécessaires dans un seul string
 $songs = "";
 foreach ($albums as $album) {
-    $duration = $utils->secondsToMin($album["duration"]);
+    $duration = $utils->formatDuration($album["duration"]);
     $songs = $songs . "<div>";
-    $songs = $songs . $album["songname"] . " : " . $album["note"] . " (" . $duration[0] . ":" . $duration[1] . ")";
+    $songs = $songs . $album["songname"] . " : " . $album["note"] . " ($duration)";
     $songs = $songs . "</div>";
 }
 

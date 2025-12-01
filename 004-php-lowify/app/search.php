@@ -70,12 +70,10 @@ foreach($foundAlbums as $album) {
 
 //On attache toutes les informations nécessaires dans un seul string
 foreach($foundSongs as $song) {
-    $duration = $utils->secondsToMin($song["duration"]);
-    $minutes = $duration[0];
-    $seconds = $duration[1];
+    $duration = $utils->formatDuration($song["duration"]);
     $searchResult = $searchResult . "<div class='block'>";
     $searchResult = $searchResult . "<h2>" . $song["name"] . " (Titre)</h2>";
-    $searchResult = $searchResult . "<p>Note : " . $song["note"] . " | Durée : $minutes:$seconds</p>";
+    $searchResult = $searchResult . "<p>Note : " . $song["note"] . " | Durée : $duration</p>";
     $searchResult = $searchResult . "<br><p>De <b>" . $song["artist_name"] . "</b> dans l'album <b>" . $song["album_name"] . "</b></p>";
     $searchResult = $searchResult . "<img src=\"" . $song["cover"] . "\"/>";
     $searchResult = $searchResult . "</div>";

@@ -42,12 +42,10 @@ $artistBiography = $artist["biography"];
 //On attache toutes les informations nécessaires dans un seul string
 $songText = "";
 foreach($songs as $song) {
-    $duration = $utils->secondsToMin($song["duration"]);
-    $minutes = $duration[0];
-    $seconds = $duration[1];
+    $duration = $utils->formatDuration($song["duration"]);
     $songText = $songText . "<div class='block'>";
     $songText = $songText . "<h2>" . $song["name"] . "</h2>";
-    $songText = $songText . "<p>Note : " . $song["note"] . " | Durée : $minutes:$seconds</p>";
+    $songText = $songText . "<p>Note : " . $song["note"] . " | Durée : $duration</p>";
     $songText = $songText . "<img src=\"" . $song["cover"] . "\"/>";
     $songText = $songText . "</div>";
 }
