@@ -13,6 +13,7 @@ final class ShowController extends AbstractController
     {
         return $this->render('wallets/show/index.html.twig', [
             'controller_name' => 'ShowController',
+            'id' => $id
         ]);
     }
 }
