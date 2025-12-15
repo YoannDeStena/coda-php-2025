@@ -1,8 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends '_layouts/standard.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
+{% block content %}
+    <style>
+        :root {
+            background: #111111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        form {
+            width: 80%;
+            margin: auto;
+        }
+        label,
+        input {
+            /* In order to define widths */
+            display: inline-block;
+            height: 30px;
+        }
+        label {
+            width: 30%;
+            /* Positions the label text beside the input */
+            text-align: right;
+        }
+        label+input {
+            width: 30%;
+            margin: 0 30% 20px 4%;
+        }
+        button {
+            margin-top: 20px;
+            width: 80%;
+            height: 50px;
+            background: #333333;
+            color: white;
+            transition: all 0.5s;
+            font-size: 30px;
+            border-radius: 20px;
+        }
+        button:hover {
+            background: green;
+        }
+    </style>
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -16,9 +56,9 @@
 
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus placeholder="placeholder@email.com"><br>
         <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required placeholder="VeryStrongPassword123*#"><br>
         <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
 
         {#
