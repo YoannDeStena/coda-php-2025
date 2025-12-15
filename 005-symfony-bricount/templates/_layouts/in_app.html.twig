@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+    <style>
+        :root {
+            background: #111111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        code {
+            color: black
+        }
+        .active {
+            background: lawngreen;
+        }
+
+        nav > ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333333;
+            display: flex;
+            margin: 0;
+        }
+
+        nav > ul > li > a {
+            display: block;
+            padding: 14px 35px;
+            text-decoration: none;
+            background: deepskyblue;
+            transition: all 0.5s;
+            color: black
+        }
+
+        nav > ul > li > a:hover {
+            background-color: crimson;
+            color: white
+        }
+    </style>
+
+    <div class="container">
+        {# menu #}
+        {% include '_components/menu.html.twig' %}
+        {# contenu #}
+        {% block content %} {% endblock %}
+    </div>
+{% endblock %}
