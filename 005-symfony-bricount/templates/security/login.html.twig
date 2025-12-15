@@ -3,50 +3,6 @@
 {% block title %}Log in!{% endblock %}
 
 {% block content %}
-    <style>
-        :root {
-            background: #111111;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        form {
-            width: 80%;
-            margin: auto;
-        }
-        label,
-        input {
-            /* In order to define widths */
-            display: inline-block;
-            height: 30px;
-        }
-        label {
-            width: 30%;
-            /* Positions the label text beside the input */
-            text-align: right;
-        }
-        label+input {
-            width: 30%;
-            margin: 0 30% 20px 4%;
-        }
-        button {
-            margin-top: 20px;
-            width: 80%;
-            height: 50px;
-            background: #333333;
-            color: white;
-            transition: all 0.5s;
-            font-size: 30px;
-            border-radius: 20px;
-        }
-        button:hover {
-            background: green;
-        }
-        .alert {
-            background: red;
-            border-radius: 5px;
-        }
-    </style>
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
