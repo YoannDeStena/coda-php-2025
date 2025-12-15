@@ -2,7 +2,7 @@
 
 <nav>
     <ul>
-        <li><a href="{{ path('home') }}" class="logout">Déconnexion</a></li>
+        <li><a href="{{ path('app_logout') }}" class="logout">Déconnexion</a></li>
         <li><a href="{{ path('home') }}" class="{% if "home" in current_route %}active{% endif %}">Accueil</a></li>
         <li><a href="{{ path('wallets_list') }}" class="{% if "wallet" in current_route %}active{% endif %}">Portefeuilles</a></li>
         <li><a href="{{ path('settings') }}" class="{% if "settings" in current_route %}active{% endif %}">Paramètres</a></li>
