@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Impl\BaseEntity;
 use App\Repository\WalletRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WalletRepository::class)]
-class Wallet
+class Wallet extends BaseEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
