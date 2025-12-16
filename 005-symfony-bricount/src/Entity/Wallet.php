@@ -14,19 +14,19 @@ class Wallet
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::GUID)]
+    #[ORM\Column(type: Types::GUID, unique: true)]
     private ?string $uid = null;
 
-    #[ORM\Column]
-    private ?int $totalAmount = null;
+    #[ORM\Column(options: ['default' => 0])]
+    private ?int $totalAmount = 0;
 
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => '[]'])]
     private array $paymentsDue = [];
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTime $lastSettlementDate = null;
 
     public function getId(): ?int
