@@ -47,36 +47,38 @@ class AppFixtures extends Fixture
 
         // now, generate 5 expenses per wallets
         foreach ($this->generatedWallets as $wallet) {
-            $this->generateExpense(
-                $wallet,
-                random_int(1, 150) * 100,
-                self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
-                $this->generatedUsers[0]
-            );
-            $this->generateExpense(
-                $wallet,
-                random_int(1, 150) * 100,
-                self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
-                $this->generatedUsers[0]
-            );
-            $this->generateExpense(
-                $wallet,
-                random_int(1, 150) * 100,
-                self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
-                $this->generatedUsers[1]
-            );
-            $this->generateExpense(
-                $wallet,
-                random_int(1, 150) * 100,
-                self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
-                $this->generatedUsers[1]
-            );
-            $this->generateExpense(
-                $wallet,
-                random_int(1, 150) * 100,
-                self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
-                $this->generatedUsers[1]
-            );
+            for ($i = 0; $i < 25; $i++) {
+                $this->generateExpense(
+                    $wallet,
+                    random_int(1, 150) * 100,
+                    self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
+                    $this->generatedUsers[0]
+                );
+                $this->generateExpense(
+                    $wallet,
+                    random_int(1, 150) * 100,
+                    self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
+                    $this->generatedUsers[0]
+                );
+                $this->generateExpense(
+                    $wallet,
+                    random_int(1, 150) * 100,
+                    self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
+                    $this->generatedUsers[1]
+                );
+                $this->generateExpense(
+                    $wallet,
+                    random_int(1, 150) * 100,
+                    self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
+                    $this->generatedUsers[1]
+                );
+                $this->generateExpense(
+                    $wallet,
+                    random_int(1, 150) * 100,
+                    self::EXPENSE_TYPES[random_int(0, sizeof(self::EXPENSE_TYPES) - 1)],
+                    $this->generatedUsers[1]
+                );
+            }
         }
 
         // generating links between users and wallets
@@ -93,7 +95,9 @@ class AppFixtures extends Fixture
     {
         $xUserWallet = new XUserWallet();
 
-        // ...
+        $xUserWallet->setTargetUser($user);
+        $xUserWallet->setWallet($wallet);
+        $xUserWallet->setRole($role);
 
         $xUserWallet->setCreatedBy($this->generatedUsers[0]);
         $xUserWallet->setCreatedDate(new \DateTime());
@@ -109,7 +113,9 @@ class AppFixtures extends Fixture
         $expense = new Expense();
         $expense->setUid(Uuid::v7()->toString());
 
-        // ...
+        $expense->setWallet($wallet);
+        $expense->setAmount($amount);
+        $expense->setDescription($description);
 
         $expense->setCreatedBy($createdBy);
         $expense->setCreatedDate(new \DateTime());
@@ -126,7 +132,7 @@ class AppFixtures extends Fixture
 
         $wallet->setUid(Uuid::v7()->toString());
 
-        // ...
+        $wallet->setLabel($label);
 
         $wallet->setCreatedBy($this->generatedUsers[0]);
         $wallet->setCreatedDate(new \DateTime());
