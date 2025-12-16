@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Wallet;
 use App\Entity\XUserWallet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
