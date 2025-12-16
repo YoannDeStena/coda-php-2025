@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Impl\BaseEntity;
 use App\Repository\ExpenseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExpenseRepository::class)]
-class Expense
+class Expense extends BaseEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
