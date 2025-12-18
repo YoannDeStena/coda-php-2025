@@ -3,7 +3,7 @@
 {% block title %}Portefeuille {{ wallet.label }}{% endblock %}
 
 {% block content %}
-    <h1>Portefeuille {{ wallet.label }}</h1>
+    <h1>Portefeuille {{ wallet.label }} (Page {{ page }}/{{ maxPaginationPage }})</h1>
     <h2>Montant Total : {{ wallet.totalAmount / 100 }}</h2>
     <ul>
         {% for expense in expenses %}
@@ -12,4 +12,10 @@
             </li>
         {% endfor %}
     </ul>
+
+    <div>
+        {% for i in 1..maxPaginationPage %}
+            <a href={{ path("wallets_show", {"uid": wallet.uid}) }}?page={{ i }}&limit={{ limit }}>{{ i }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

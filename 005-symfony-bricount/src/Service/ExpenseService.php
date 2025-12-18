@@ -14,4 +14,8 @@ class ExpenseService
     public function findExpensesForWallet(Wallet $wallet, int $page, int $limit): array {
         return $this->expenseRepository->findExpensesForWallet($wallet, $page, $limit);
     }
+
+    public function countExpensesForWallet(Wallet $wallet) {
+        return $this->expenseRepository->countExpensesFromWallet($wallet);
+    }
 }

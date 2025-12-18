@@ -19,7 +19,7 @@ final class ShowController extends AbstractController
         ExpenseService $expenseService,
         WalletService $walletService,
         #[MapQueryParameter] int $page = 1,
-        #[MapQueryParameter] int $limit = 25): Response
+        #[MapQueryParameter] int $limit = 15): Response
     {
         $connectedUser = $this->getUser();
         $xUserWallet = $walletService->getUserAccessOnWallet($connectedUser, $wallet);
@@ -30,11 +30,17 @@ final class ShowController extends AbstractController
 
         $expenses = $expenseService->findExpensesForWallet($wallet, $page, $limit);
 
+        $nbTotalExpenses = $expenseService->countExpensesForWallet($wallet);
+        $maxPaginationPage = ceil($nbTotalExpenses/$limit);
+
         return $this->render('wallets/show/index.html.twig', [
             'controller_name' => 'ShowController',
             'uid' => $wallet->getUid(),
             'expenses' => $expenses,
-            'wallet' => $wallet
+            'wallet' => $wallet,
+            'maxPaginationPage' => $maxPaginationPage,
+            'limit' => $limit,
+            'page' => $page
         ]);
     }
 }

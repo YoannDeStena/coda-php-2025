@@ -28,4 +28,14 @@ class ExpenseRepository extends ServiceEntityRepository
             ->setParameter("walletId", $wallet->getId())
             ->getQuery()->getArrayResult();
     }
+
+    public function countExpensesFromWallet(Wallet $wallet): int {
+        $array = $this
+            ->createQueryBuilder("e")
+            ->innerJoin("e.wallet", "w", "WITH", "w.isDeleted = false AND w.id = :walletId")
+            ->andWhere("e.isDeleted = false")
+            ->setParameter("walletId", $wallet->getId())
+            ->getQuery()->getArrayResult();
+        return count($array);
+    }
 }
