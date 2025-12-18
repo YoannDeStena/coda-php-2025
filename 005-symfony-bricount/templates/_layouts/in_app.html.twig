@@ -45,11 +45,23 @@
             background-color: blue;
             color: white
         }
+        .alert {
+            background: red;
+            border-radius: 5px;
+        }
     </style>
 
     <div class="container">
         {# menu #}
         {% include '_components/menu.html.twig' %}
+        {# messages flashes #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message|raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {# contenu #}
         {% block content %} {% endblock %}
     </div>

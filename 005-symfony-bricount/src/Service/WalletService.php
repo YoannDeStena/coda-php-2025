@@ -7,10 +7,11 @@ use App\Entity\Wallet;
 use App\Entity\XUserWallet;
 use App\Repository\WalletRepository;
 use App\Repository\XUserWalletRepository;
+use SebastianBergmann\Diff\Exception;
 
 class WalletService
 {
-    public function __construct(private readonly WalletRepository $walletRepository, private readonly XUserWalletRepository $XUserWalletRepository)
+    public function __construct(private readonly WalletRepository $walletRepository, private readonly XUserWalletRepository $xUserWalletRepository)
     {
 
     }
@@ -20,6 +21,12 @@ class WalletService
     }
 
     public function getUserAccessOnWallet(User $user, Wallet $wallet): null|XUserWallet {
-        return $this->XUserWalletRepository->getUserAccessOnWallet($user, $wallet);
+        $xUserWallet = null;
+        try {
+            $xUserWallet = $this->xUserWalletRepository->getUserAccessOnWallet($user, $wallet);
+        } catch(\Exception $e) {
+
+        }
+        return $xUserWallet;
     }
 }

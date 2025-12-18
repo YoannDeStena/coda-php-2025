@@ -20,7 +20,7 @@ class ExpenseRepository extends ServiceEntityRepository
     public function findExpensesForWallet(Wallet $wallet, int $page, int $limit): array {
         return $this
             ->createQueryBuilder("e")
-            ->innerJoin("e.wallet", "w", "WITH", "w.isDeleted = false AND w.id = :wallet")
+            ->innerJoin("e.wallet", "w", "WITH", "w.isDeleted = false AND w.id = :walletId")
             ->andWhere("e.isDeleted = false")
             ->orderBy("e.createdBy", "DESC")
             ->setMaxResults($limit)
