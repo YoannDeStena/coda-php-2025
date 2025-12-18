@@ -13,9 +13,9 @@
         {% endfor %}
     </ul>
 
-    <div>
+    <div class="pages">
         {% for i in 1..maxPaginationPage %}
-            <a href={{ path("wallets_show", {"uid": wallet.uid}) }}?page={{ i }}&limit={{ limit }}>{{ i }}</a>
+            <a class="pageButton" href={{ path("wallets_show", {"uid": wallet.uid}) }}?page={{ i }}&limit={{ limit }}>{{ i }}</a>
         {% endfor %}
     </div>
 {% endblock %}
