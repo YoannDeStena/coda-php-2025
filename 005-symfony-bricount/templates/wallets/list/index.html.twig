@@ -6,7 +6,9 @@
     <h1>Liste des Portefeuilles</h1>
     <ul>
         {% for wallet in wallets %}
-            <li>{{ wallet.label }}</li>
+            <li>
+                <a href="{{ path("wallets_show", {"id": wallet.id}) }}">{{ wallet.label }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
