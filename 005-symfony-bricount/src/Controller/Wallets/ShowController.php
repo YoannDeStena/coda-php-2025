@@ -33,6 +33,9 @@ final class ShowController extends AbstractController
         $nbTotalExpenses = $expenseService->countExpensesForWallet($wallet);
         $maxPaginationPage = ceil($nbTotalExpenses/$limit);
 
+        if($nbTotalExpenses < $limit)
+            $maxPaginationPage = 1;
+
         return $this->render('wallets/show/index.html.twig', [
             'controller_name' => 'ShowController',
             'uid' => $wallet->getUid(),
