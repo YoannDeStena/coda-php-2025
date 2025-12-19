@@ -1,0 +1,10 @@
+{% extends '_layouts/in_app.html.twig' %}
+
+{% block title %}Création Portefeuille{% endblock %}
+
+{% block content %}
+    <h1>Création d'un nouveau Portefeuille</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+    {{ form_end(form) }}
+{% endblock %}
