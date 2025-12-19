@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>Portefeuille {{ wallet.label }} (Page {{ page }}/{{ maxPaginationPage }})</h1>
+    <div style="margin: 20px 20px 50px 50px">
+        <a class="pageButton" href="{{ path("wallets_edit",  {"uid": uid}) }}">
+            Modifier Portefeuille
+        </a>
+    </div>
     <h2>Montant Total : {{ wallet.totalAmount / 100 }}</h2>
     <ul>
         {% for expense in expenses %}

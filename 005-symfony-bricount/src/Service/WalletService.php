@@ -49,4 +49,13 @@ class WalletService
         $this->xUserWalletService->create($wallet, $user, "admin"); //Accès
         return $wallet;
     }
+
+    public function updateWallet(WalletDTO $dto, Wallet $wallet, User $user): Wallet {
+        $wallet->setLabel($dto->name);
+        $wallet->setUpdatedBy($user);
+        $wallet->setUpdatedDate(new DateTime());
+        $this->em->persist($wallet);
+        $this->em->flush();
+        return $wallet;
+    }
 }
