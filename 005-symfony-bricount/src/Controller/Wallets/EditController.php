@@ -26,7 +26,7 @@ final class EditController extends AbstractController
             return $this->redirectToRoute('wallets_edit');
         }
 
-        $dto = new WalletDTO();
+        $dto = WalletDTO::fromEntity($wallet);
         $form = $this->createForm(WalletType::class, $dto);
         // traitement du formulaire par symfony, validations, etc.
         $form->handleRequest($request);
