@@ -18,11 +18,12 @@ class WalletType extends AbstractType
         $builder
             ->add("name", TextType::class, [
                 "constraints" => [
-                    new NotBlank(),
-                    new Length(3,50)
+                    new NotBlank(message: "Le nom ne peut pas être vide"),
+                    new Length(min:3,max:50, minMessage: "Le nom doit être au moins 3 caractères", maxMessage: "Le nom doit être moins de 50 caractères")
                 ],
                 "required" => true,
-                "label" => "Nom du Portefeuille"
+                "label" => "Nom du Portefeuille",
+                "help" => "Le nom doit être entre 3 et 50 caractères"
             ])
             ->add("submit", SubmitType::class)
         ;

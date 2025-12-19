@@ -2,16 +2,24 @@
 
 namespace App\Service;
 
+use App\DTO\WalletDTO;
 use App\Entity\User;
 use App\Entity\Wallet;
 use App\Entity\XUserWallet;
 use App\Repository\WalletRepository;
 use App\Repository\XUserWalletRepository;
-use SebastianBergmann\Diff\Exception;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Symfony\Component\Uid\Uuid;
 
 class WalletService
 {
-    public function __construct(private readonly WalletRepository $walletRepository, private readonly XUserWalletRepository $xUserWalletRepository)
+    public function __construct(
+        private readonly WalletRepository $walletRepository,
+        private readonly XUserWalletRepository $xUserWalletRepository,
+        private readonly EntityManagerInterface $em,
+        private readonly XUserWalletService $xUserWalletService)
     {
 
     }
@@ -24,9 +32,21 @@ class WalletService
         $xUserWallet = null;
         try {
             $xUserWallet = $this->xUserWalletRepository->getUserAccessOnWallet($user, $wallet);
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
 
         }
         return $xUserWallet;
+    }
+
+    public function createWallet(WalletDTO $dto, User $user): Wallet {
+        $wallet = new Wallet();
+        $wallet->setUid(Uuid::v7()->toString());
+        $wallet->setLabel($dto->name);
+        $wallet->setCreatedBy($user);
+        $wallet->setCreatedDate(new DateTime());
+        $this->em->persist($wallet);
+        $this->em->flush();
+        $this->xUserWalletService->create($wallet, $user, "admin"); //Accès
+        return $wallet;
     }
 }
