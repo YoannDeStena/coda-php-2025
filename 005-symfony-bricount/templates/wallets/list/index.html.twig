@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>Liste des Portefeuilles</h1>
+    <div style="margin: 20px 20px 50px 50px">
+        <a class="pageButton" href="{{ path("wallets_create") }}">
+            Nouveau Portefeuille
+        </a>
+    </div>
     <ul>
         {% for wallet in wallets %}
             <li>
