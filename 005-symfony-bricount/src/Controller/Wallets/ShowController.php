@@ -23,7 +23,7 @@ final class ShowController extends AbstractController
     {
         $connectedUser = $this->getUser();
         $xUserWallet = $walletService->getUserAccessOnWallet($connectedUser, $wallet);
-        if(is_null($xUserWallet)) {
+        if(is_null($xUserWallet) || $xUserWallet->getRole() != "admin") {
             $this->addFlash("error", "Vous n'avez pas accès à ce portefeuille.");
             return $this->redirectToRoute("wallets_list");
         }

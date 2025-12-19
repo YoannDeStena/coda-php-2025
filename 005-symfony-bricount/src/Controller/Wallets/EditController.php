@@ -23,7 +23,7 @@ final class EditController extends AbstractController
             // en cas d'erreur, ajout d'un message flash pour indiquer l'erreur
             $this->addFlash('error', "Vous n'avez pas la permission pour modifier ce portefeuille.");
             // redirection vers la page de création du wallet
-            return $this->redirectToRoute('wallets_edit');
+            return $this->redirectToRoute('wallets_list');
         }
 
         $dto = WalletDTO::fromEntity($wallet);
